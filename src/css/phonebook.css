@@ -1,0 +1,137 @@
+.phonebook-box {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: rgba(250, 250, 250, 0.5);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+
+  padding: 10px;
+
+  max-height: 95%;
+  backdrop-filter: blur(5px);
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 550px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+.input-box {
+  position: relative;
+  height: 30px;
+}
+
+.input-box:first-child {
+  margin-bottom: 7px;
+}
+
+.input-box > input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  box-shadow: inset 0 0 15px 5px rgba(0, 0, 0, 0.2);
+  padding: 0 10px;
+}
+
+.input-box > input:focus,
+.input-box > input.active {
+  outline: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.input-box > label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+
+  transition: 0.2s ease-in;
+  cursor: text;
+}
+
+.input-box > input:focus + label,
+.input-box > input.active + label {
+  transform: translateY(calc(-100% - 2px));
+  top: 0;
+  font-size: 12px;
+}
+
+.ph-button {
+  background: transparent;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+
+  width: 100%;
+  max-width: 150px;
+
+  margin: 0 auto;
+  padding: 12px 10px;
+
+  height: 40px;
+}
+
+.ph-button:active {
+  box-shadow: inset 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.contact-list-title {
+  margin-bottom: 5px;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  overflow-y: scroll;
+}
+
+.contacts-list > li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.contacts-list > li > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 0;
+
+  --size: 20px;
+  width: calc(var(--size) + 2px);
+  height: var(--size);
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  box-shadow: inset 0 0 10px 5px rgba(0, 0, 0, 0.1);
+}
