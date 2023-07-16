@@ -6,7 +6,7 @@ export function ContactList({ filteredContacts, removeFromContactsList }) {
     removeFromContactsList(index);
   };
 
-  return (
+  return filteredContacts.length ? (
     <ul className="contacts-list global-list">
       {filteredContacts.map(({ number, name, id }, index) => (
         <li key={id}>
@@ -23,11 +23,12 @@ export function ContactList({ filteredContacts, removeFromContactsList }) {
         </li>
       ))}
     </ul>
+  ) : (
+    <p className="global-p">No contacts</p>
   );
 }
 
 ContactList.propTypes = {
-  filter: PropTypes.string,
-  contacts: PropTypes.array,
+  filteredContacts: PropTypes.array,
   removeFromContactsList: PropTypes.func,
 };
