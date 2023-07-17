@@ -24,7 +24,6 @@ export class App extends Component {
   addContact = ({ number, name, id }) => {
     if (this.checkContact(name)) {
       this.state.contacts.push({ number, name, id });
-      this.saveContacts();
       this.setState({ contacts: this.state.contacts });
     }
   };
@@ -35,7 +34,6 @@ export class App extends Component {
 
   removeFromContactsList = index => {
     this.state.contacts.splice(index, 1);
-    this.saveContacts();
     this.setState({ contacts: this.state.contacts });
   };
 
@@ -43,6 +41,10 @@ export class App extends Component {
     return contacts.filter(({ name }) => {
       return name.toLowerCase().includes(this.state.filter.toLowerCase());
     });
+  };
+
+  componentDidUpdate = () => {
+    this.saveContacts();
   };
 
   render() {
