@@ -4,7 +4,7 @@ import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 export class App extends Component {
   state = {
-    contacts: JSON.parse(localStorage.getItem('contacts')) || [],
+    contacts: [],
     filter: '',
   };
 
@@ -40,6 +40,12 @@ export class App extends Component {
   filterContacts = contacts => {
     return contacts.filter(({ name }) => {
       return name.toLowerCase().includes(this.state.filter.toLowerCase());
+    });
+  };
+
+  componentDidMount = () => {
+    this.setState({
+      contacts: JSON.parse(localStorage.getItem('contacts')) || [],
     });
   };
 
