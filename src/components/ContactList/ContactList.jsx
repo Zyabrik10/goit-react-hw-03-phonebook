@@ -2,20 +2,20 @@ import PropTypes from 'prop-types';
 
 export function ContactList({ filteredContacts, removeFromContactsList }) {
   const removeFromContactsListHandler = ({ currentTarget }) => {
-    const index = currentTarget.getAttribute('data-index');
-    removeFromContactsList(index);
+    const id = currentTarget.getAttribute('data-id');
+    removeFromContactsList(id);
   };
 
   return filteredContacts.length ? (
     <ul className="contacts-list global-list">
-      {filteredContacts.map(({ number, name, id }, index) => (
+      {filteredContacts.map(({ number, name, id }) => (
         <li key={id}>
           <p className="global-p">
             {name}: {number}
           </p>
           <button
             className="ph-button global-button"
-            data-index={index}
+            data-id={id}
             onClick={removeFromContactsListHandler}
           >
             &times;

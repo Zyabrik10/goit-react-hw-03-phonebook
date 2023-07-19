@@ -23,8 +23,11 @@ export class App extends Component {
 
   addContact = ({ number, name, id }) => {
     if (this.checkContact(name)) {
-      this.state.contacts.push({ number, name, id });
-      this.setState({ contacts: this.state.contacts });
+      this.setState(prevState => {
+        return {
+          contacts: [...prevState.contacts, { number, name, id }],
+        };
+      });
     }
   };
 
@@ -32,9 +35,12 @@ export class App extends Component {
     this.setState({ filter: target.value });
   };
 
-  removeFromContactsList = index => {
-    this.state.contacts.splice(index, 1);
-    this.setState({ contacts: this.state.contacts });
+  removeFromContactsList = id => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(e => e.id !== id),
+      };
+    });
   };
 
   filterContacts = contacts => {
@@ -44,13 +50,17 @@ export class App extends Component {
   };
 
   componentDidMount = () => {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
     this.setState({
-      contacts: JSON.parse(localStorage.getItem('contacts')) || [],
+      contacts: contacts || [],
     });
   };
 
-  componentDidUpdate = () => {
-    this.saveContacts();
+  componentDidUpdate = (prevProp, { filter: prevFilter }) => {
+    if (prevFilter === this.state.filter) {
+      this.saveContacts();
+      console.log('Contacts are saved');
+    }
   };
 
   render() {
